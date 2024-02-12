@@ -1,0 +1,84 @@
+/* components/Navbar.module.css */
+.navbar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	z-index: 10;
+	justify-content: space-between;
+	/* padding: 10px 20px; */
+	backdrop-filter: blur(24px);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Optional: Add a border */
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+}
+
+.logo * {
+	margin-left: 8px;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	font-family: 'Kaushan Script', cursive;
+	color: #ffffff; /* White color */
+}
+
+.logoText {
+	margin-left: 5px;
+}
+
+.buttons {
+	display: none;
+	margin-right: 10px;
+}
+
+.loginButton,
+.signupButton {
+	padding: 8px 16px;
+	border: none;
+	border-radius: 20px;
+	margin-left: 10px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 18px;
+	width: 150px;
+	height: 50px;
+}
+
+.loginButton {
+	color: #ffffff; /* White color */
+	background-color: #000000; /* Black color */
+}
+
+.signupButton {
+	color: #000000; /* Black color */
+	background-color: #ffffff; /* White color */
+}
+
+.mobileMenu {
+	background-color: transparent;
+	margin-right: 10px;
+	color: white;
+	border: 0;
+}
+
+.mobileMenu:hover {
+	cursor: pointer;
+}
+
+@media only screen and (min-width: 930px) {
+	.mobileMenu {
+		display: none;
+	}
+
+	.buttons {
+		display: flex;
+		align-items: center;
+	}
+}
