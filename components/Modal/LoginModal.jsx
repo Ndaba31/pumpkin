@@ -1,18 +1,17 @@
 // components/LoginModal.js
 import React, { useState } from 'react';
 import styles from '@/styles/SignupModal.module.css';
+import { useDateContext } from '@/context/dateContext';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const LoginModal = ({ isOpen, onClose, openSignUp }) => {
+	const { setError, error } = useDateContext();
+	const router = useRouter();
 	const [formData, setFormData] = useState({
-		firstName: '',
-		lastName: '',
 		email: '',
-		username: '',
 		password: '',
-		confirmPassword: '',
 	});
-
-	console.log(isOpen);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -22,8 +21,23 @@ const LoginModal = ({ isOpen, onClose, openSignUp }) => {
 		}));
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
+		const { email, password } = formData;
+
+		const result = await signIn('credentials', {
+			redirect: false,
+			email,
+			password,
+		});
+
+		if (result.error) {
+			const err = 'Incorrect Email/Password';
+			setError(`Authentication Failed: ${err}`);
+		} else {
+			setError('');
+			router.push('/home');
+		}
 	};
 
 	return (
@@ -37,12 +51,14 @@ const LoginModal = ({ isOpen, onClose, openSignUp }) => {
 					&times;
 				</span>
 				<h2>Login</h2>
+				{error !== '' && <p className={styles.error}>{error}</p>}
 				<form onSubmit={handleSubmit}>
 					<input
 						type='email'
 						name='email'
 						className={styles.input}
 						placeholder='Email'
+						required
 						value={formData.email}
 						onChange={handleChange}
 					/>
@@ -52,6 +68,7 @@ const LoginModal = ({ isOpen, onClose, openSignUp }) => {
 						className={styles.input}
 						placeholder='Password'
 						value={formData.password}
+						required
 						onChange={handleChange}
 					/>
 					<button

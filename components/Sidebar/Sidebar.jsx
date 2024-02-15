@@ -4,17 +4,31 @@ import Link from 'next/link';
 import styles from '@/styles/Sidebar.module.css';
 import { Cancel } from '@mui/icons-material';
 
-const Sidebar = ({ closeSidebar }) => {
+const Sidebar = ({ closeSidebar, openSignUp, openLogin }) => {
 	return (
 		<div className={styles.sidebar}>
 			<button className={styles.closeButton} onClick={closeSidebar}>
 				<Cancel />
 			</button>
 			<div className={styles.sidebarContent}>
-				<Link href='/login' className={styles.link}>
+				<Link
+					href=''
+					onClick={() => {
+						openLogin();
+						closeSidebar();
+					}}
+					className={styles.link}
+				>
 					Login
 				</Link>
-				<Link href='/signup' className={styles.link}>
+				<Link
+					href=''
+					onClick={() => {
+						openSignUp();
+						closeSidebar();
+					}}
+					className={styles.link}
+				>
 					Sign Up
 				</Link>
 			</div>

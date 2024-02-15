@@ -6,7 +6,7 @@ import styles from '@/styles/Navbar.module.css';
 import { Menu } from '@mui/icons-material';
 import Sidebar from '../Sidebar/Sidebar';
 
-const Navbar = () => {
+const Navbar = ({ openSignUp, openLogin }) => {
 	const [showSidebar, setShowSidebar] = useState(false);
 
 	const toggleSidebar = () => {
@@ -20,13 +20,23 @@ const Navbar = () => {
 				<h1 className={styles.logo}>Pumpkin</h1>
 			</Link>
 			<div className={styles.buttons}>
-				<button className={styles.loginButton}>Login</button>
-				<button className={styles.signupButton}>Sign Up</button>
+				<button className={styles.loginButton} onClick={openLogin}>
+					Login
+				</button>
+				<button className={styles.signupButton} onClick={openSignUp}>
+					Sign Up
+				</button>
 			</div>
 			<button className={styles.mobileMenu} onClick={toggleSidebar}>
 				<Menu />
 			</button>
-			{showSidebar && <Sidebar closeSidebar={toggleSidebar} />}
+			{showSidebar && (
+				<Sidebar
+					closeSidebar={toggleSidebar}
+					openLogin={openLogin}
+					openSignUp={openSignUp}
+				/>
+			)}
 		</div>
 	);
 };

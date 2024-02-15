@@ -140,7 +140,7 @@ const SignupModal = ({ isOpen, onClose, openLogin }) => {
 						Create Account
 					</button>
 				</form>
-				<p className={styles.loginText}>
+				<p className={styles.signupText}>
 					Already have an account? <span onClick={openLogin}>Login</span>
 				</p>
 			</div>

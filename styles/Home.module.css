@@ -1,5 +1,18 @@
 .body {
 	background: linear-gradient(270deg, #c3530a -2.97%, #191222 103.98%);
+}
+
+.landingPage {
 	height: 100vh;
 	overflow: hidden;
+}
+
+/* Hero on Home Page */
+
+.hero {
+	position: absolute;
+	width: 100%;
+	height: 500px;
+	left: 0px;
+	top: 0px;
 }

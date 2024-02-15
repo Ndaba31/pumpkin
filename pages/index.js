@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
 import SignupModal from '@/components/Modal/SignupModal';
 import LoginModal from '@/components/Modal/LoginModal';
+import Header from '@/components/Head/Head';
 
 const Home = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,8 +33,9 @@ const Home = () => {
 	};
 
 	return (
-		<div className={styles.body}>
-			<Navbar page='home' />
+		<div className={`${styles.body} ${styles.landingPage}`}>
+			<Header title='Pumpkin' />
+			<Navbar page='home' openLogin={openLoginCLick} openSignUp={openModal} />
 			<Hero openModal={openModal} />
 			{isModalOpen && (
 				<SignupModal isOpen={isModalOpen} onClose={closeModal} openLogin={openLoginCLick} />

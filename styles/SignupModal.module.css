@@ -61,15 +61,19 @@
 	padding: 10px 20px;
 	border: none;
 	border-radius: 20px;
-	background-color: #ffffff; /* White color */
-	color: #000000; /* Black color */
+	background: linear-gradient(268.93deg, #0e0a22 -6.14%, #0e0a22 141.52%);
+	color: #fff; /* White color */
 	font-weight: bold;
 	cursor: pointer;
 }
 
 .button:hover {
 	cursor: pointer;
-	background-color: #f0f0f0; /* Light gray color */
+	opacity: 0.9;
+}
+
+.signupText:hover {
+	cursor: pointer;
 }
 
 @media (min-width: 768px) {
