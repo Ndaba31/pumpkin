@@ -1,6 +1,6 @@
 /* components/Navbar.module.css */
 .navbar {
-	position: fixed;
+	position: sticky;
 	top: 0;
 	width: 100%;
 	display: flex;
@@ -26,7 +26,7 @@
 	display: flex;
 	align-items: center;
 	font-family: 'Kaushan Script', cursive;
-	color: #ffffff; /* White color */
+	color: #ffffff;
 }
 
 .logoText {
@@ -56,9 +56,41 @@
 	background-color: #000000; /* Black color */
 }
 
-.signupButton {
+.signupButton,
+.logoutButton {
 	color: #000000; /* Black color */
 	background-color: #ffffff; /* White color */
+}
+
+.logoutButton {
+	padding: 8px 16px;
+	border: none;
+	border-radius: 20px;
+	font-weight: bold;
+	line-height: 20px;
+	font-size: 16px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+.options {
+	width: 75%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.link {
+	padding: 8px 16px;
+	font-size: 18px;
+	line-height: 20px;
+	background-color: transparent;
+	border-radius: 10px;
+	text-decoration: none;
+	color: #fff;
+}
+
+.link:hover {
+	opacity: 0.5;
 }
 
 .mobileMenu {

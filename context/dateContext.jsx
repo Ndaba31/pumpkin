@@ -5,8 +5,13 @@ const DateContext = createContext(undefined);
 // Create a custom provider component that wraps your date
 const DateContextProvider = ({ children }) => {
 	const [error, setError] = useState('');
+	const [success, setSuccess] = useState('');
 
-	return <DateContext.Provider value={{ error, setError }}>{children}</DateContext.Provider>;
+	return (
+		<DateContext.Provider value={{ error, setError, success, setSuccess }}>
+			{children}
+		</DateContext.Provider>
+	);
 };
 
 // Create a custom hook to access the context values

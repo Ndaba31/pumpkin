@@ -36,7 +36,7 @@ const Home = () => {
 		<div className={`${styles.body} ${styles.landingPage}`}>
 			<Header title='Pumpkin' />
 			<Navbar page='home' openLogin={openLoginCLick} openSignUp={openModal} />
-			<Hero openModal={openModal} />
+			<Hero openModal={openModal} openLogin={openLoginCLick} />
 			{isModalOpen && (
 				<SignupModal isOpen={isModalOpen} onClose={closeModal} openLogin={openLoginCLick} />
 			)}
