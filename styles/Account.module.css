@@ -1,0 +1,152 @@
+.main h3 {
+  text-align: center;
+}
+.main .profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 0px;
+  padding-top: 100px;
+  color: white;
+  background: linear-gradient(270deg, #c3530a -2.97%, #191222 103.98%);
+  border-radius: 0px 0px 32px 32px;
+  border-style: none;
+}
+
+.main .profile h2,
+.profile p {
+  margin: 0%;
+}
+
+.main .profile .profile_picture {
+  width: 150px;
+  height: 150px;
+  border-color: white;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  object-fit: cover;
+  overflow: clip;
+}
+
+main .statistics_section {
+  padding: 32px 0px;
+}
+main .statistics_section .statistics {
+  text-align: center;
+}
+main .statistics_section .statistics span {
+  font-weight: bold;
+}
+main .statistics_section .separator {
+  margin: 10px;
+}
+
+.main .bio {
+  padding: 0px 20px;
+}
+
+.main .post_something {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 0px;
+}
+
+.main .post_something h3 {
+  margin: 0%;
+}
+
+.main .post_something button {
+  padding: 20px 48px;
+  color: white;
+  background-color: black;
+  border-radius: 50px;
+  border: none;
+  margin-top: 20px;
+  width: 250px;
+}
+.main .user_post h4,
+.user_post h3 {
+  margin: 0%;
+}
+.main .user_post h4 {
+  text-align: center;
+  color: gray;
+}
+.main .posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  grid-gap: 5px;
+  padding: 20px;
+}
+
+.main .post_card {
+  object-fit: cover;
+  min-height: 110px;
+  min-width: 110px;
+  position: relative;
+}
+
+.main .post_image {
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .main .profile {
+    flex-direction: row;
+    text-align: left;
+    gap: 64px;
+    padding: 64px;
+    align-items: center;
+    padding-top: 100px;
+  }
+  .main .profile h2 {
+    font-size: 48px;
+  }
+  main .statistics_section {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 64px;
+    padding-top: 40px;
+  }
+  .main h3 {
+    text-align: left;
+  }
+  .main .bio {
+    padding: 20px 64px;
+  }
+  .main .bio p {
+    width: 50%;
+  }
+  .main .user_post {
+    padding: 0px 64px;
+  }
+  .main .posts {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-content: start;
+    align-items: baseline;
+    grid-gap: 20px;
+    gap: 20px;
+  }
+  .main .post_card {
+    height: 250px;
+    width: 250px;
+  }
+  .main .post_something {
+    display: none;
+  }
+  .main .user_post h4 {
+    display: none;
+  }
+  .main .user_post {
+    padding: 20px 64px;
+  }
+}
