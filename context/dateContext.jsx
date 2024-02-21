@@ -6,9 +6,10 @@ const DateContext = createContext(undefined);
 const DateContextProvider = ({ children }) => {
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState('');
+	const [loading, setLoading] = useState(false);
 
 	return (
-		<DateContext.Provider value={{ error, setError, success, setSuccess }}>
+		<DateContext.Provider value={{ error, setError, success, setSuccess, loading, setLoading }}>
 			{children}
 		</DateContext.Provider>
 	);
