@@ -13,7 +13,13 @@ const Hero = ({ openModal, openLogin }) => {
 						<h1 className={styles.title}>
 							To Pu
 							<span className={styles.image}>
-								<Image src='/logo.svg' alt='Pumpkin Logo' width={50} height={50} />
+								<Image
+									src='/logo.svg'
+									alt='Pumpkin Logo'
+									priority
+									width={50}
+									height={50}
+								/>
 							</span>
 							pkin
 						</h1>

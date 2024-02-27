@@ -5,8 +5,12 @@ import Hero from '@/components/Hero/Hero';
 import SignupModal from '@/components/Modal/SignupModal';
 import LoginModal from '@/components/Modal/LoginModal';
 import Header from '@/components/Head/Head';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const Home = () => {
+	const { data: session } = useSession();
+	const router = useRouter();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isLoginClick, setIsLoginClick] = useState(false);
 
@@ -31,6 +35,11 @@ const Home = () => {
 		setIsLoginClick(false);
 		console.log('isLoginClick set to False');
 	};
+
+	if (session) {
+		router.replace('/home');
+		return;
+	}
 
 	return (
 		<div className={`${styles.body} ${styles.landingPage}`}>
