@@ -128,14 +128,18 @@ const ProfilePage = () => {
 				<h3>Bio</h3>
 				<p>{user.bio ? user.bio : 'No Biography'}</p>
 			</div>
-			<div className={styles.post_something}>
+			{/* <div className={styles.post_something}>
 				<h3>More About {user.first_name}</h3>
 				<button>Post</button>
-			</div>
+			</div> */}
 			<div className={styles.user_post}>
 				<h3>Posts</h3>
 				<h4>{user.num_posts}</h4>
-				<Posts posts={posts} isUser={true} />
+				{posts.length !== 0 ? (
+					<Posts posts={posts} isUser={true} />
+				) : (
+					<h1 style={{ textAlign: 'center' }}>No Posts Yet</h1>
+				)}
 			</div>
 		</main>
 	);

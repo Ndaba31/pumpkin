@@ -11,7 +11,7 @@ import Loading from '@/components/Loading/Loading';
 import Breather from '@/components/Breather/Breather';
 
 const HomePage = () => {
-	const { setLoading, loading } = useDateContext();
+	const { setLoading, loading, setUser } = useDateContext();
 	const { data: session } = useSession();
 	const [popularUsers, setPopularUsers] = useState([]);
 	const [mostWantedUsers, setMostWantedUsers] = useState([]);
@@ -27,13 +27,38 @@ const HomePage = () => {
 			});
 
 			const { popular_users, most_wanted_users, single_users } = await result.json();
-			setPopularUsers(popular_users);
-			setMostWantedUsers(most_wanted_users);
-			setSingleUsers(single_users);
+			setPopularUsers(popular_users.filter(({ email }) => session.user.email !== email));
+			setMostWantedUsers(
+				most_wanted_users.filter(({ email }) => session.user.email !== email)
+			);
+			setSingleUsers(single_users.filter(({ email }) => session.user.email !== email));
 			setLoading(false);
 		};
+
+		const getUser = async () => {
+			const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/users/newUser`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email: session ? session.user.email : '',
+				}),
+			});
+
+			if (result.ok) {
+				const { user } = await result.json();
+				console.log(user);
+				setUser(user);
+			} else {
+				const { error } = await result.json();
+				console.log(error);
+			}
+		};
+
 		setLoading(true);
 		getUsers();
+		getUser();
 	}, []);
 
 	if (!session) {

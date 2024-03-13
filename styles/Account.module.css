@@ -111,6 +111,138 @@ main .statistics_section .separator {
 	gap: 10px;
 }
 
+.favorite {
+	padding: 8px;
+	/* border-radius: 10px; */
+	background-color: transparent;
+	transform: scale(1.5);
+	color: red;
+}
+
+.favorite:hover {
+	cursor: pointer;
+}
+
+.match_button {
+	display: flex;
+	align-items: center;
+	width: 200px;
+	height: 50px;
+	justify-content: center;
+	border-radius: 20px;
+	border: 0;
+	background: linear-gradient(to right, #af85be, #d3a3a9, #d6bfbc);
+}
+
+.match_icon {
+	/* background-color: transparent; */
+	color: red;
+}
+
+.match_icon:hover {
+	background-color: #ccc;
+}
+
+.match_button:hover {
+	background: linear-gradient(to left, #af85be, #d3a3a9, #d6bfbc);
+	cursor: pointer;
+}
+
+.rejected_match {
+	background: linear-gradient(to top right, black, red);
+	color: #ccc;
+}
+
+.rejected_match:hover {
+	cursor: not-allowed;
+	background: linear-gradient(to bottom left, black, red);
+}
+
+.accepted_match {
+	display: flex;
+	align-items: center;
+	width: 200px;
+	height: 50px;
+	justify-content: center;
+	border-radius: 20px;
+	background: linear-gradient(to top right, black, limegreen);
+	color: #ccc;
+}
+
+.accepted_match:hover {
+	cursor: pointer;
+	background: linear-gradient(to bottom left, black, limegreen);
+}
+
+.pending_match {
+	display: flex;
+	align-items: center;
+	width: 200px;
+	height: 50px;
+	justify-content: center;
+	border-radius: 20px;
+	background: linear-gradient(to top right, black, orange);
+	color: #ccc;
+}
+
+.pending_match:hover {
+	cursor: pointer;
+	background: linear-gradient(to bottom left, black, orange);
+}
+
+.match_button_decline {
+	display: flex;
+	align-items: center;
+	width: 100px;
+	height: 50px;
+	justify-content: center;
+	border-radius: 20px;
+	border: 0;
+	background: linear-gradient(to right, #fe2802, #be3e27, #a73d36);
+}
+
+.choice_buttons {
+	display: flex;
+	justify-content: space-around;
+}
+
+.match_button_accept {
+	display: flex;
+	align-items: center;
+	width: 100px;
+	height: 50px;
+	justify-content: center;
+	border-radius: 20px;
+	border: 0;
+	background: linear-gradient(to right, #55e512, #12c329, #0e9c23);
+}
+
+.match_button_accept:hover {
+	background: linear-gradient(to left, #12daac, #30e2b0, #56dcaf);
+	cursor: pointer;
+}
+
+.match_button_decline:hover {
+	background: linear-gradient(to left, #ed5353, #f45f5f, #f57a7a);
+	cursor: pointer;
+}
+
+.change_mind {
+	display: flex;
+	align-items: center;
+	width: 200px;
+	height: 50px;
+	justify-content: center;
+	border-radius: 20px;
+	border: 0;
+	background: linear-gradient(to right, #ccf905, #e3f033, #f1f16a);
+}
+
+.change_mind:hover {
+	background: linear-gradient(to left, #d1ed63, #cbe861, #d2e080);
+	cursor: pointer;
+}
+
 @media (min-width: 768px) {
 	.main .profile {
 		flex-direction: row;
@@ -160,5 +292,10 @@ main .statistics_section .separator {
 	}
 	.buttons {
 		flex-direction: row;
+		gap: 50px;
+	}
+
+	.buttons button {
+		margin: auto;
 	}
 }

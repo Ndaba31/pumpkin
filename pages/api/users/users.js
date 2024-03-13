@@ -7,17 +7,17 @@ export default async function handler(req, res) {
 
 	if (req.method === 'GET') {
 		const popular_users = await query({
-			query: 'SELECT users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name FROM user_details, users WHERE users.stem = user_details.stem ORDER BY pumpkins DESC LIMIT 10',
+			query: 'SELECT users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name, email FROM user_details, users WHERE users.stem = user_details.stem ORDER BY pumpkins DESC LIMIT 10',
 			values: [],
 		});
 
 		const most_wanted_users = await query({
-			query: 'SELECT users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name FROM user_details, users WHERE users.stem = user_details.stem ORDER BY hickies DESC LIMIT 10',
+			query: 'SELECT users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name, email FROM user_details, users WHERE users.stem = user_details.stem ORDER BY hickies DESC LIMIT 10',
 			values: [],
 		});
 
 		const single_users = await query({
-			query: 'SELECT users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name, relationship_status FROM user_details, users WHERE users.stem = user_details.stem AND (relationship_status = ? OR relationship_status = ? OR relationship_status = ?) ORDER BY hickies DESC LIMIT 10',
+			query: 'SELECT users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name, email, relationship_status FROM user_details, users WHERE users.stem = user_details.stem AND (relationship_status = ? OR relationship_status = ? OR relationship_status = ?) ORDER BY hickies DESC LIMIT 10',
 			values: ['single', 'widowed', 'divorced'],
 		});
 

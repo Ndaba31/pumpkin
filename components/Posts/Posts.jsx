@@ -19,7 +19,9 @@ const Posts = ({ posts, isUser }) => {
 						<PostDetail post={posts} />
 					</Link>
 				) : (
-					<PostDetail key={id} post={posts} />
+					<Link key={id} href={`/profile/${pk}/${id}`}>
+						<PostDetail key={id} post={posts} />
+					</Link>
 				)
 			)}
 		</div>
