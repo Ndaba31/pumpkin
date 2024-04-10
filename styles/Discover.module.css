@@ -1,0 +1,159 @@
+/* Discover.module.css */
+
+.hero {
+	position: absolute;
+	width: 100%;
+	height: 500px; /* Keep the height for larger screens */
+	left: 0;
+	top: 0;
+	background: linear-gradient(270deg, #c3530a -2.97%, #191222 103.98%);
+	color: white;
+}
+
+.heroContent {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	align-items: center;
+}
+
+.heroContent h1 {
+	font-weight: 700;
+	font-size: 64px;
+}
+
+.searchContainer {
+	display: flex;
+	align-items: center;
+}
+
+.inputContainer {
+	position: relative;
+}
+
+.input {
+	padding: 10px 60px 10px 10px; /* Adjust padding as needed */
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	outline: none;
+	width: 500px; /* Adjust width for smaller screens */
+	max-width: 500px; /* Limit maximum width */
+	height: 30px;
+	font-size: 16pt;
+}
+
+.searchIcon {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	color: #999;
+}
+
+.filterIconContainer {
+	margin-left: 10px;
+	background-color: transparent;
+	border: 0;
+}
+
+.filterIcon {
+	color: #999;
+	cursor: pointer;
+}
+
+.searchList {
+	position: relative;
+	width: 500px;
+	margin-top: 10px;
+	max-height: 200px;
+	background-color: #ffffff;
+	color: black;
+	box-shadow: 0px 26px 37.6px rgba(0, 0, 0, 0.25);
+	border-radius: 6px;
+	overflow-y: scroll;
+}
+
+.listItem {
+	display: flex;
+	padding: 10px;
+	border-bottom: 1px solid lightgrey;
+	text-decoration: none;
+	color: black;
+	align-items: center;
+	gap: 10px;
+	/* height: 50px; */
+}
+
+.listItem:hover {
+	background-color: lightgrey;
+}
+
+.imgContainer {
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	border: black 1px solid;
+	position: relative;
+}
+
+.imgContainer * {
+	border-radius: 50%;
+}
+
+.newUser {
+	border-radius: 20px;
+	background-color: lightgrey;
+	font-weight: bold;
+	padding: 5px 20px;
+	color: rgba(0, 0, 0, 0.7);
+	text-align: center;
+}
+
+.listContent {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+}
+
+.listContent * {
+	margin: 5px;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+	.hero {
+		height: 500px; /* Allow height to adjust dynamically */
+	}
+
+	.heroContent {
+		margin-top: 50px;
+	}
+
+	.heroContent h1 {
+		font-size: 32px; /* Decrease font size for smaller screens */
+	}
+
+	.input {
+		padding: 10px 40px 10px 10px; /* Adjust padding for smaller screens */
+		font-size: 14pt; /* Decrease font size for smaller screens */
+		width: 100%;
+	}
+
+	.searchContainer {
+		justify-content: center;
+		width: 90%;
+	}
+
+	.inputContainer {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.filterIconContainer {
+		margin: 0;
+	}
+
+	.searchList {
+		width: 80%;
+	}
+}
