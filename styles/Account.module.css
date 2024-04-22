@@ -1,3 +1,17 @@
+.editInfo {
+	display: grid;
+	grid-template-columns: 100%;
+}
+
+.left {
+	/* flex: 2; */
+}
+
+.right {
+	/* flex: 1; */
+	/* background: red; */
+}
+
 .main h3 {
 	text-align: center;
 }
@@ -243,6 +257,56 @@ main .statistics_section .separator {
 	cursor: pointer;
 }
 
+.editBio {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 25px;
+}
+
+.editBio button {
+	background-color: transparent;
+	font-weight: 700;
+	border: 0;
+	cursor: pointer;
+}
+
+.pillsView {
+	padding: 0 20px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+	margin-bottom: 10px;
+}
+
+.pillContainer {
+	padding: 20px 0;
+}
+
+.pills {
+	background-color: #d9d9d9;
+	color: 2C2A2A;
+	border: 0;
+	border-radius: 20px;
+	padding: 5px;
+	margin: 5px;
+	font-size: 12pt;
+}
+
+.segmentGrid {
+	/* display: grid;
+	grid-template-columns: auto auto; */
+}
+
+.segmentContainer {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	/* gap: 50px; */
+}
+
+.segmentContainer button {
+	background-color: transparent;
+}
+
 @media (min-width: 768px) {
 	.main .profile {
 		flex-direction: row;
@@ -297,5 +361,10 @@ main .statistics_section .separator {
 
 	.buttons button {
 		margin: auto;
+	}
+
+	.editInfo {
+		display: grid;
+		grid-template-columns: 60% 40%;
 	}
 }
