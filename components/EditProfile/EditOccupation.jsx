@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import modal from '@/styles/SignupModal.module.css';
 import styles from '@/styles/EditAccount.module.css';
-import { companys } from '@/data';
 import { useRouter } from 'next/router';
 import { useDateContext } from '@/context/dateContext';
 

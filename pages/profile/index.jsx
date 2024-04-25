@@ -18,6 +18,7 @@ import EditDetails from '@/components/EditProfile/EditDetails';
 import Loading from '@/components/Loading/Loading';
 import EditLocation from '@/components/EditProfile/EditLocation';
 import EditOccupation from '@/components/EditProfile/EditOccupation';
+import MoreDetails from '@/components/EditProfile/MoreDetails';
 
 const ProfilePage = () => {
 	const { data: session, loading } = useSession();
@@ -28,6 +29,7 @@ const ProfilePage = () => {
 	const [details, setDetails] = useState([]);
 	const [area, setArea] = useState([]);
 	const [openEditDetails, setOpenEditDetails] = useState(false);
+	const [openEditMoreDetails, setOpenEditMoreDetails] = useState(false);
 	const [openEditLocation, setOpenEditLocation] = useState(false);
 	const [openEditOccupation, setOpenEditOccupation] = useState(false);
 
@@ -67,6 +69,14 @@ const ProfilePage = () => {
 
 	const closeDetailsModal = () => {
 		setOpenEditDetails(false);
+	};
+
+	const openMoreDetailsModal = () => {
+		setOpenEditMoreDetails(true);
+	};
+
+	const closeMoreDetailsModal = () => {
+		setOpenEditMoreDetails(false);
 	};
 
 	const openLocationModal = () => {
@@ -185,6 +195,13 @@ const ProfilePage = () => {
 					</div>
 				</div>
 				{openEditDetails && <EditDetails user={user} onClose={closeDetailsModal} />}
+				{openEditMoreDetails && (
+					<MoreDetails
+						profile={details}
+						stem={user.stem}
+						onClose={closeMoreDetailsModal}
+					/>
+				)}
 				{openEditOccupation && (
 					<EditOccupation
 						occupation={occupation}
@@ -234,7 +251,7 @@ const ProfilePage = () => {
 							</div>
 							<div className={styles.editBio}>
 								<h3>Personal Details</h3>
-								<button>
+								<button onClick={openMoreDetailsModal}>
 									<h3>Edit</h3>
 								</button>
 							</div>

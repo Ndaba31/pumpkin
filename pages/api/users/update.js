@@ -135,6 +135,99 @@ export default async function handler(req, res) {
 						values: [user.title, user.company, stem],
 					});
 				}
+			} else if (fields.update === 'more_details') {
+				const userObject = fields.user;
+				const user = JSON.parse(userObject);
+				const stem = fields.stem;
+				console.log('More Details Reached.\nStem: ', stem);
+				console.log(user);
+				const pumpkin_more_details = await query({
+					query: 'SELECT religion, ethnicity, sex, relationship_status, dob FROM user_details WHERE stem = ?;',
+					values: [stem],
+				});
+
+				console.log('Pumpkin More Details Query:');
+				console.log(pumpkin_more_details);
+
+				if (
+					user.dob !== '' &&
+					user.dob !== pumpkin_more_details[0].dob &&
+					user.dob !== null
+				) {
+					const updateDetail = await query({
+						query: 'UPDATE user_details SET dob = ? WHERE stem = ?;',
+						values: [user.dob, stem],
+					});
+
+					if (!updateDetail) {
+						console.log('Update Not Done');
+						res.status(500).json({ success: false });
+					}
+				}
+
+				if (
+					user.relationship_status !== '' &&
+					user.relationship_status !== pumpkin_more_details[0].relationship_status &&
+					user.relationship_status !== null
+				) {
+					const updateDetail = await query({
+						query: 'UPDATE user_details SET relationship_status = ? WHERE stem = ?;',
+						values: [user.relationship_status, stem],
+					});
+
+					if (!updateDetail) {
+						console.log('Update Not Done');
+						res.status(500).json({ success: false });
+					}
+				}
+
+				if (
+					user.religion !== '' &&
+					user.religion !== pumpkin_more_details[0].religion &&
+					user.religion !== null
+				) {
+					const updateDetail = await query({
+						query: 'UPDATE user_details SET religion = ? WHERE stem = ?;',
+						values: [user.religion, stem],
+					});
+
+					if (!updateDetail) {
+						console.log('Update Not Done');
+						res.status(500).json({ success: false });
+					}
+				}
+
+				if (
+					user.sex !== '' &&
+					user.sex !== pumpkin_more_details[0].sex &&
+					user.sex !== null
+				) {
+					const updateDetail = await query({
+						query: 'UPDATE user_details SET sex = ? WHERE stem = ?;',
+						values: [user.sex, stem],
+					});
+
+					if (!updateDetail) {
+						console.log('Update Not Done');
+						res.status(500).json({ success: false });
+					}
+				}
+
+				if (
+					user.ethnicity !== '' &&
+					user.ethnicity !== pumpkin_more_details[0].ethnicity &&
+					user.ethnicity !== null
+				) {
+					const updateDetail = await query({
+						query: 'UPDATE user_details SET ethnicity = ? WHERE stem = ?;',
+						values: [user.ethnicity, stem],
+					});
+
+					if (!updateDetail) {
+						console.log('Update Not Done');
+						res.status(500).json({ success: false });
+					}
+				}
 			}
 		});
 
