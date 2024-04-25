@@ -14,15 +14,22 @@ import Pills from '@/components/Pills/Pills';
 import Occupations from '@/components/Pills/Occupations';
 import ProfileSegment from '@/components/Pills/ProfileSegment';
 import Location from '@/components/Pills/Location';
+import EditDetails from '@/components/EditProfile/EditDetails';
+import Loading from '@/components/Loading/Loading';
+import EditLocation from '@/components/EditProfile/EditLocation';
+import EditOccupation from '@/components/EditProfile/EditOccupation';
 
 const ProfilePage = () => {
-	const { data: session } = useSession();
+	const { data: session, loading } = useSession();
 	const { user, setUser } = useDateContext();
 	const [posts, setPosts] = useState([]);
 	const [hobbies, setHobbies] = useState([]);
 	const [occupation, setOccupation] = useState([]);
 	const [details, setDetails] = useState([]);
 	const [area, setArea] = useState([]);
+	const [openEditDetails, setOpenEditDetails] = useState(false);
+	const [openEditLocation, setOpenEditLocation] = useState(false);
+	const [openEditOccupation, setOpenEditOccupation] = useState(false);
 
 	useEffect(() => {
 		const getUser = async () => {
@@ -52,7 +59,35 @@ const ProfilePage = () => {
 		};
 
 		getUser();
-	}, []);
+	}, [session]);
+
+	const openDetailsModal = () => {
+		setOpenEditDetails(true);
+	};
+
+	const closeDetailsModal = () => {
+		setOpenEditDetails(false);
+	};
+
+	const openLocationModal = () => {
+		setOpenEditLocation(true);
+	};
+
+	const closeLocationModal = () => {
+		setOpenEditLocation(false);
+	};
+
+	const openOccupationModal = () => {
+		setOpenEditOccupation(true);
+	};
+
+	const closeOccupationModal = () => {
+		setOpenEditOccupation(false);
+	};
+
+	if (loading) {
+		<Loading />;
+	}
 
 	if (!session) {
 		return <Authenticate />;
@@ -118,7 +153,8 @@ const ProfilePage = () => {
 					</div>
 					<div className={styles.buttons}>
 						<Link
-							href='profile/edit'
+							href=''
+							onClick={openDetailsModal}
 							className={css.signupButton}
 							style={{
 								display: 'flex',
@@ -148,6 +184,17 @@ const ProfilePage = () => {
 						</Link>
 					</div>
 				</div>
+				{openEditDetails && <EditDetails user={user} onClose={closeDetailsModal} />}
+				{openEditOccupation && (
+					<EditOccupation
+						occupation={occupation}
+						stem={user.stem}
+						onClose={closeOccupationModal}
+					/>
+				)}
+				{openEditLocation && (
+					<EditLocation area={area} stem={user.stem} onClose={closeLocationModal} />
+				)}
 				<div className={styles.editInfo}>
 					<div className={styles.bio}>
 						<h3>Bio</h3>
@@ -170,7 +217,7 @@ const ProfilePage = () => {
 							</div>
 							<div className={styles.editBio}>
 								<h3>Occupation</h3>
-								<button>
+								<button onClick={openOccupationModal}>
 									<h3>Edit</h3>
 								</button>
 							</div>
@@ -178,7 +225,11 @@ const ProfilePage = () => {
 								{occupation === undefined || occupation.length === 0 ? (
 									<h3>No Occupations Listed Yet</h3>
 								) : (
-									<Occupations occupation={occupation} />
+									<Occupations
+										occupation={occupation}
+										setOccupation={setOccupation}
+										stem={user.stem}
+									/>
 								)}
 							</div>
 							<div className={styles.editBio}>
@@ -202,7 +253,7 @@ const ProfilePage = () => {
 							</div>
 							<div className={styles.editBio}>
 								<h3>Location</h3>
-								<button>
+								<button onClick={openLocationModal}>
 									<h3>Edit</h3>
 								</button>
 							</div>
@@ -210,7 +261,7 @@ const ProfilePage = () => {
 								{area === undefined || area.length === 0 ? (
 									<h3>No Location Details</h3>
 								) : (
-									<Location area={area} />
+									<Location area={area} stem={user.stem} setArea={setArea} />
 								)}
 							</div>
 						</div>

@@ -11,7 +11,7 @@ import Loading from '@/components/Loading/Loading';
 import Breather from '@/components/Breather/Breather';
 
 const HomePage = () => {
-	const { setLoading, loading, setUser } = useDateContext();
+	const { setLoading, loading, setUser, userEmail } = useDateContext();
 	const { data: session } = useSession();
 	const [popularUsers, setPopularUsers] = useState([]);
 	const [mostWantedUsers, setMostWantedUsers] = useState([]);
@@ -27,11 +27,21 @@ const HomePage = () => {
 			});
 
 			const { popular_users, most_wanted_users, single_users } = await result.json();
-			setPopularUsers(popular_users.filter(({ email }) => session.user.email !== email));
-			setMostWantedUsers(
-				most_wanted_users.filter(({ email }) => session.user.email !== email)
+			setPopularUsers(
+				popular_users.filter(({ email }) =>
+					session ? session.user.email !== email : userEmail !== email
+				)
 			);
-			setSingleUsers(single_users.filter(({ email }) => session.user.email !== email));
+			setMostWantedUsers(
+				most_wanted_users.filter(({ email }) =>
+					session ? session.user.email !== email : userEmail !== email
+				)
+			);
+			setSingleUsers(
+				single_users.filter(({ email }) =>
+					session ? session.user.email !== email : userEmail !== email
+				)
+			);
 			setLoading(false);
 		};
 
@@ -42,7 +52,7 @@ const HomePage = () => {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({
-					email: session ? session.user.email : '',
+					email: session ? session.user.email : userEmail,
 				}),
 			});
 
@@ -59,7 +69,7 @@ const HomePage = () => {
 		setLoading(true);
 		getUsers();
 		getUser();
-	}, []);
+	}, [session]);
 
 	if (!session) {
 		return <Authenticate />;
