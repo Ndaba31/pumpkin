@@ -1,0 +1,182 @@
+.body {
+  background: linear-gradient(180deg, #c3530a 0%, #131020 100%);
+  height: 100vh;
+  width: 100%;
+  /* overflow-y: clip; */
+  /*background: linear-gradient(270deg, #c3530a -2.97%, #191222 103.98%);*/
+  position: fixed;
+}
+
+.body_all {
+  background: linear-gradient(180deg, #c3530a 0%, #131020 100%);
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  position: fixed;
+  -webkit-overflow-scrolling: touch;
+}
+
+.buttons {
+  position: absolute;
+  opacity: 100%;
+  width: 165px;
+  height: 70px;
+  left: 45%;
+  top: 80%;
+  z-index: 1;
+}
+
+.profile_button {
+  background: white;
+}
+.profile_button_right {
+  background: white;
+  width: 20%;
+  height: 20%;
+}
+
+.matches {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  position: absolute;
+  left: 40.39%;
+  right: 40.47%;
+  top: 93.24%;
+  bottom: 4.08%;
+
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+
+  color: rgba(247, 247, 247, 0.5);
+}
+
+.matches_link {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  position: absolute;
+  margin-left: 46vw;
+  top: 93.24%;
+  bottom: 4.08%;
+
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+
+  color: rgba(247, 247, 247, 0.5);
+}
+
+.navigateLeft {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  position: relative;
+
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+
+  color: rgba(247, 247, 247, 0.5);
+}
+
+.navigateRight {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  position: relative;
+
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+
+  color: rgba(247, 247, 247, 0.5);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 55vh;
+  gap: 20vh;
+}
+
+.people_card_container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-bottom: 40px;
+  margin-bottom: -40px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 750px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 55vh;
+    gap: 5vh;
+  }
+
+  .buttons {
+    left: 35%;
+  }
+
+  .navigateLeft {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    position: fixed;
+
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 2px;
+    text-align: center;
+
+    color: rgba(247, 247, 247, 0.5);
+    margin-bottom: -470px;
+    padding: -100%;
+    margin-right: 56vw;
+  }
+
+  .navigateRight {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    position: fixed;
+
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 2px;
+    text-align: center;
+
+    color: rgba(247, 247, 247, 0.5);
+    margin-bottom: -470px;
+    padding: -100%;
+    margin-left: 52vw;
+  }
+
+  .all {
+    white-space: nowrap;
+  }
+  .matches_link {
+    margin-left: 33vw;
+  }
+}

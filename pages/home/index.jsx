@@ -84,7 +84,7 @@ const HomePage = () => {
 					objectFit='cover'
 				/>
 			</div>
-			<Discover category='Most Popular' users={popularUsers} />
+			<Discover color='black' category='Most Popular' users={popularUsers} />
 			<Breather
 				title1='Discover'
 				title2='More People'
@@ -92,7 +92,7 @@ const HomePage = () => {
 				buttonText='Search'
 				link='/discover'
 			/>
-			<Discover category='Most Wanted' users={mostWantedUsers} />
+			<Discover color='black' category='Most Wanted' users={mostWantedUsers} />
 			<Breather
 				title1='See People'
 				title2='You Matched With'
@@ -100,7 +100,7 @@ const HomePage = () => {
 				buttonText='Go'
 				link='/matches'
 			/>
-			<Discover category='Single & Searching' users={singleUsers} />
+			<Discover color='black' category='Single & Searching' users={singleUsers} />
 		</main>
 	);
 };
