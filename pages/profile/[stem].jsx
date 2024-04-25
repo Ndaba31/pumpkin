@@ -26,6 +26,10 @@ import Loading from '@/components/Loading/Loading';
 import Authenticate from '@/components/Authenticate/Authenticate';
 import { useDateContext } from '@/context/dateContext';
 import { useSession } from 'next-auth/react';
+import Location from '@/components/Pills/Location';
+import ProfileSegment from '@/components/Pills/ProfileSegment';
+import Occupations from '@/components/Pills/Occupations';
+import Pills from '@/components/Pills/Pills';
 
 const Stem = () => {
 	const router = useRouter();
@@ -40,6 +44,10 @@ const Stem = () => {
 	const [slide, setSlide] = useState(false);
 	const [acceptSlide, setAcceptSlide] = useState(null);
 	const [liked_back, setLiked_back] = useState(false);
+	const [hobbies, setHobbies] = useState([]);
+	const [occupation, setOccupation] = useState([]);
+	const [details, setDetails] = useState([]);
+	const [area, setArea] = useState([]);
 
 	const crushee = user;
 	console.log(crushee);
@@ -75,9 +83,13 @@ const Stem = () => {
 			});
 
 			if (result.ok) {
-				const { user, posts } = await result.json();
+				const { user, posts, hobbies, occupation, details, area } = await result.json();
 				setCrush(user);
 				setPosts(posts);
+				setHobbies(hobbies);
+				setOccupation(occupation);
+				setDetails(details);
+				setArea(area);
 			} else {
 				const { error } = await result.json();
 				console.log(error);
@@ -497,45 +509,78 @@ const Stem = () => {
 							</button>
 						</div>
 					)}
-					{/* <Link
-						href='profile/edit'
-						className={css.signupButton}
-						style={{
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'center',
-							gap: '10px',
-							textDecoration: 'none',
-							border: '1px solid darkgrey',
-						}}
-					>
-						<p>Edit Profile</p>
-						<EditNoteSharp />
-					</Link>
-					<Link
-						href='profile/post-image'
-						className={css.loginButton}
-						style={{
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'center',
-							gap: '10px',
-							textDecoration: 'none',
-						}}
-					>
-						<p>Post</p>
-						<AddBoxOutlined />
-					</Link> */}
 				</div>
 			</div>
-			<div className={styles.bio}>
-				<h3>Bio</h3>
-				<p>{crush.bio ? crush.bio : 'No Biography'}</p>
+			<div className={styles.editInfo}>
+				<div className={styles.bio}>
+					<h3>Bio</h3>
+					<p>{crush.bio ? crush.bio : 'No Biography'}</p>
+				</div>
+				<div className={styles.right}>
+					<div>
+						<div className={styles.editBio}>
+							<h3>Hobbies</h3>
+							{/* <button>
+								<h3>Edit</h3>
+							</button> */}
+						</div>
+						<div className={styles.pillsView}>
+							{hobbies === undefined || hobbies.length === 0 ? (
+								<h3>No Hobbies Selected Yet</h3>
+							) : (
+								<Pills list={hobbies} />
+							)}
+						</div>
+						<div className={styles.editBio}>
+							<h3>Occupation</h3>
+							{/* <button>
+								<h3>Edit</h3>
+							</button> */}
+						</div>
+						<div className={styles.pillsView}>
+							{occupation === undefined || occupation.length === 0 ? (
+								<h3>No Occupations Listed Yet</h3>
+							) : (
+								<Occupations occupation={occupation} />
+							)}
+						</div>
+						<div className={styles.editBio}>
+							<h3>Personal Details</h3>
+							{/* <button>
+								<h3>Edit</h3>
+							</button> */}
+						</div>
+						<div className={styles.pillsView}>
+							{details === undefined ||
+							details.length === 0 ||
+							(!details.relationship_status &&
+								!details.sex &&
+								!details.dob &&
+								!details.ethnicity &&
+								!details.religion) ? (
+								<h3>No Personal Details</h3>
+							) : (
+								<ProfileSegment profile={details} />
+							)}
+						</div>
+						<div className={styles.editBio}>
+							<h3>Location</h3>
+							{/* <button>
+								<h3>Edit</h3>
+							</button> */}
+						</div>
+						<div className={styles.pillsView}>
+							{area === undefined || area.length === 0 ? (
+								<h3>No Location Details</h3>
+							) : (
+								<Location area={area} />
+							)}
+						</div>
+					</div>
+					<div></div>
+					<div></div>
+				</div>
 			</div>
-			{/* <div className={styles.post_something}>
-				<h3>More About {crush.first_name}</h3>
-				<button>Post</button>
-			</div> */}
 			<div className={styles.user_post}>
 				<h3>Posts</h3>
 				<h4>{crush.num_posts}</h4>

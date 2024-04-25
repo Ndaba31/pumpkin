@@ -5,7 +5,7 @@ import { useDateContext } from '@/context/dateContext';
 import { useRouter } from 'next/router';
 
 const SignupModal = ({ isOpen, onClose, openLogin }) => {
-	const { error, setError, setSuccess } = useDateContext();
+	const { error, setError, setSuccess, setUserEmail } = useDateContext();
 	const router = useRouter();
 
 	const [formData, setFormData] = useState({
@@ -62,6 +62,7 @@ const SignupModal = ({ isOpen, onClose, openLogin }) => {
 
 		if (result.ok) {
 			setSuccess('Account created successfully. Click on link to Login.');
+			setUserEmail(email);
 			router.push('/home');
 		} else {
 			const { error } = await result.json();

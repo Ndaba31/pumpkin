@@ -26,7 +26,34 @@ export default async function handler(req, res) {
 			values: [stem],
 		});
 
-		res.status(200).json({ user: userDB[0], posts: userPosts });
+		const userHobbies = await query({
+			query: 'SELECT hobby FROM users, hobbies WHERE users.stem = hobbies.stem AND users.stem = ?',
+			values: [stem],
+		});
+
+		const userOccupation = await query({
+			query: 'SELECT title, company FROM occupations, users WHERE occupations.stem = users.stem AND users.stem = ?',
+			values: [stem],
+		});
+
+		const userDetails = await query({
+			query: 'SELECT dob, sex, ethnicity, relationship_status, religion FROM user_details, users WHERE user_details.stem = users.stem AND users.stem = ?',
+			values: [stem],
+		});
+
+		const userLocation = await query({
+			query: 'SELECT city, region FROM locations, users WHERE locations.stem = users.stem AND users.stem = ?',
+			values: [stem],
+		});
+
+		res.status(200).json({
+			user: userDB[0],
+			posts: userPosts,
+			hobbies: userHobbies,
+			occupation: userOccupation[0],
+			details: userDetails[0],
+			area: userLocation[0],
+		});
 	}
 
 	if (req.method === 'POST') {

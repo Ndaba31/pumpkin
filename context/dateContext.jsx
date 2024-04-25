@@ -7,11 +7,26 @@ const DateContextProvider = ({ children }) => {
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState('');
 	const [loading, setLoading] = useState(false);
+	const [isBusy, setIsBusy] = useState(false);
 	const [user, setUser] = useState({});
+	const [userEmail, setUserEmail] = useState('');
 
 	return (
 		<DateContext.Provider
-			value={{ error, setError, success, setSuccess, loading, setLoading, user, setUser }}
+			value={{
+				error,
+				setError,
+				success,
+				setSuccess,
+				loading,
+				setLoading,
+				user,
+				setUser,
+				isBusy,
+				setIsBusy,
+				userEmail,
+				setUserEmail,
+			}}
 		>
 			{children}
 		</DateContext.Provider>
