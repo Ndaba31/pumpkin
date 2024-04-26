@@ -6,6 +6,7 @@ import { useState,useEffect } from 'react';
 import styles from '@/styles/Matches.module.css'
 import { useSession } from 'next-auth/react';
 import { useDateContext } from '@/context/dateContext';
+import Link from 'next/link';
 
 const all = () => {
 
@@ -90,6 +91,7 @@ const all = () => {
     <div className={styles.body_all}>
       <Header title='AllMatches'/>
       <Navbar />
+	  <Link href='/matches' className={styles.back}>Browse Pumpkins</Link>
       <Discover color='white' category='Positive Fruits' users={slideYou}/>
       <Discover color='white' category='Approved Fruits' users={youAccept}/>
       <Discover color='white' category='Rejected Fruits' users={youReject} />

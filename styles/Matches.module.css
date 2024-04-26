@@ -72,6 +72,25 @@
   color: rgba(247, 247, 247, 0.5);
 }
 
+.back {
+  background-color: rgba(0, 0, 0, 0);
+  border: aqua;
+  position: absolute;
+  margin-left: 46vw;
+  /*top: 93.24%;
+  bottom: 4.08%; */
+
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+
+  color: rgba(247, 247, 247, 0.5);
+  margin-bottom: 100px;
+}
+
 .navigateLeft {
   background-color: rgba(0, 0, 0, 0);
   border: none;
@@ -135,6 +154,10 @@
 
   .buttons {
     left: 35%;
+  }
+
+  .back {
+    margin-left: 30vw;
   }
 
   .navigateLeft {

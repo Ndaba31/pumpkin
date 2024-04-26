@@ -8,97 +8,35 @@ export default async function handler(req, res) {
 	if (req.method === 'POST') {
 	  const { email } = req.body;
   
-	  let slideForYou_names = await query({
-		query: 'SELECT matches.crushee AS stem FROM matches, user_details,users WHERE matches.crush = user_details.stem and users.email = ? and liked_back is null;',
+	  const slideForYou = await query({
+		query: 'Select users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name, email From users, user_details where users.stem = user_details.stem and users.stem IN (Select crushee From matches where liked_back is null and crush in (Select stem From users where email = ?));',
 		values: [email],
 	  });
   
-	  let youAcceptedMatch_names = await query({
-		query: 'SELECT matches.crushee AS stem FROM matches, user_details,users WHERE matches.crush = user_details.stem and users.email = ? and liked_back = ?;',
-		values: [email, 1],
+	  let youAcceptedMatch = await query({
+		query: 'Select users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name, email From users, user_details where users.stem = user_details.stem and users.stem IN (Select crushee From matches where liked_back = ? and crush in (Select stem From users where email = ?));',
+		values: [1,email],
 	  });
   
-	  let youRejectedMatch_names = await query({
-		query: 'SELECT matches.crushee AS stem FROM matches, user_details,users WHERE matches.crush = user_details.stem and users.email = ? and liked_back = ?;',
-		values: [email, 0],
+	  let youRejectedMatch = await query({
+		query: 'Select users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name, email From users, user_details where users.stem = user_details.stem and users.stem IN (Select crushee From matches where liked_back =? and crush in (Select stem From users where email = ?));',
+		values: [0,email],
 	  });
   
-	  let slideForCrush_names = await query({
-		query: 'SELECT matches.crush AS stem FROM matches, user_details,users WHERE matches.crush = user_details.stem and users.email = ? and liked_back is null;',
+	  let slideForCrush = await query({
+		query: 'Select users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name, email From users, user_details where users.stem = user_details.stem and users.stem IN (Select crush From matches where liked_back is null and crushee in (Select stem From users where email = ?));',
 		values: [email],
 	  });
   
-	  let crushAccepted_names = await query({
-		query: 'SELECT matches.crush AS stem FROM matches, user_details,users WHERE matches.crush = user_details.stem and users.email = ? and liked_back = ?;',
-		values: [email, 1],
+	  let crushAccepted = await query({
+		query: 'Select users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name, email From users, user_details where users.stem = user_details.stem and users.stem IN (Select crush From matches where liked_back = ? and crushee in (Select stem From users where email = ?));',
+		values: [1,email],
 	  });
   
-	  let crushRejected_names = await query({
-		query: 'SELECT matches.crush AS stem FROM matches, user_details,users WHERE matches.crush = user_details.stem and users.email = ? and liked_back = ?;',
-		values: [email, 0],
+	  let crushRejected = await query({
+		query: 'Select users.stem AS stem, dob, hickies, pumpkins, profile_photo, first_name, last_name, email From users, user_details where users.stem = user_details.stem and users.stem IN (Select crush From matches where liked_back = ? and crushee in (Select stem From users where email = ?));',
+		values: [0,email],
 	  });
-  
-      let slideForYou=[]
-
-	  let something = await Promise.all(slideForYou_names.forEach(async (stem) => {
-		let value = await query({
-		  query: 'SELECT users.stem,user_details.dob,user_details.hickies,user_details.pumpkins,user_details.profile_photo,users.first_name,users.last_name,users.email FROM user_details, users WHERE ? = user_details.stem;',
-		  values: [stem]
-		});
-		slideForYou.push(value)
-	  }));
-  
-      let youAcceptedMatch=[]
-
-	  let anything = await Promise.all(youAcceptedMatch_names.forEach(async (stem) => {
-		let value = await query({
-		  query: 'SELECT users.stem,user_details.dob,user_details.hickies,user_details.pumpkins,user_details.profile_photo,users.first_name,users.last_name,users.email FROM user_details, users WHERE ? = user_details.stem;',
-		  values: [stem]
-		});
-		youAcceptedMatch.push(value)
-	  }));
-  
-	  let youRejectedMatch=[]
-
-	  let everything = await Promise.all(youRejectedMatch_names.forEach(async (stem) => {
-		let value = await query({
-		  query: 'SELECT users.stem,user_details.dob,user_details.hickies,user_details.pumpkins,user_details.profile_photo,users.first_name,users.last_name,users.email FROM user_details, users WHERE ? = user_details.stem;',
-		  values: [stem]
-		});
-		youRejectedMatch.push(value)
-	  }));
-
-	  let slideForCrush=[]
-
-	  let combing = await Promise.all(slideForCrush_names.forEach(async (stem) => {
-		let value = await query({
-		  query: 'SELECT users.stem,user_details.dob,user_details.hickies,user_details.pumpkins,user_details.profile_photo,users.first_name,users.last_name,users.email FROM user_details, users WHERE ? = user_details.stem;',
-		  values: [stem]
-		});
-		slideForCrush.push(value)
-	  }));
-  
-      let crushAccepted=[]
-
-	  let climbing = await Promise.all(crushAccepted_names.forEach(async (stem) => {
-		let value = await query({
-		  query: 'SELECT users.stem,user_details.dob,user_details.hickies,user_details.pumpkins,user_details.profile_photo,users.first_name,users.last_name,users.email FROM user_details, users WHERE ? = user_details.stem;',
-		  values: [stem]
-		});
-		crushAccepted.push(value)
-	  }));
-  
-	  let crushRejected=[]
-
-	  let hallucinating = await Promise.all(crushRejected_names.forEach(async (stem) => {
-		let value = await query({
-		  query: 'SELECT users.stem,user_details.dob,user_details.hickies,user_details.pumpkins,user_details.profile_photo,users.first_name,users.last_name,users.email FROM user_details, users WHERE ? = user_details.stem;',
-		  values: [stem]
-		});
-		crushRejected.push(value)
-	  }));
-  
-	
   
 	  res.status(200).json({
 		message: message,
