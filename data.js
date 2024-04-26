@@ -83,4 +83,6 @@ export const hobbies = [
 	'Meditation',
 	'Gardening',
 	'Outdoor activities',
+	'Canoeing',
+	'Swimming',
 ];
