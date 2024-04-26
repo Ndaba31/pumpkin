@@ -97,6 +97,14 @@
 	flex-direction: column;
 }
 
+.hobby_buttons {
+	border-radius: 20px;
+	margin: 5px;
+	padding: 8px 16px;
+	border: none;
+	cursor: pointer;
+}
+
 @media (min-width: 768px) {
 	.formGrid {
 		display: grid;
