@@ -51,7 +51,7 @@ const Navbar = ({ openSignUp, openLogin, page }) => {
 							className={styles.logoutButton}
 							onClick={() => {
 								signOut({
-									callbackUrl: `${process.env.NEXT_PUBLIC_URL}`,
+									callbackUrl: `/`,
 								});
 							}}
 						>
