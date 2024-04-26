@@ -4,7 +4,7 @@ import styles from '@/styles/EditAccount.module.css';
 import { useRouter } from 'next/router';
 import { useDateContext } from '@/context/dateContext';
 
-const EditOccupation = ({ occupation, onClose, stem }) => {
+const EditOccupation = ({ occupation, onClose, stem, setOccupation }) => {
 	const router = useRouter();
 	const { setLoading } = useDateContext();
 	const [formData, setFormData] = useState({
@@ -44,8 +44,8 @@ const EditOccupation = ({ occupation, onClose, stem }) => {
 			});
 
 			if (res.ok) {
-				setLoading(true);
-				router.reload();
+				// setLoading(true);
+				setOccupation(formData);
 			} else {
 				console.log('Problem with update occupations query');
 			}

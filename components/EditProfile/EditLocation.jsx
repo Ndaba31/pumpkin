@@ -5,7 +5,7 @@ import { regions } from '@/data';
 import { useRouter } from 'next/router';
 import { useDateContext } from '@/context/dateContext';
 
-const EditLocation = ({ area, onClose, stem }) => {
+const EditLocation = ({ area, onClose, stem, setLocation }) => {
 	const router = useRouter();
 	const { setLoading } = useDateContext();
 	const [formData, setFormData] = useState({
@@ -40,8 +40,9 @@ const EditLocation = ({ area, onClose, stem }) => {
 			});
 
 			if (res.ok) {
-				setLoading(true);
-				router.reload();
+				// setLoading(true);
+				// router.reload();
+				setLocation(formData);
 			} else {
 				console.log('Problem with update locations query');
 			}

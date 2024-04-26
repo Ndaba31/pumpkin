@@ -92,7 +92,8 @@
 	grid-template-columns: 100%;
 }
 
-.location {
+.location,
+.more_details {
 	display: flex;
 	flex-direction: column;
 }
@@ -121,5 +122,9 @@
 
 	.form select {
 		width: 50%;
+	}
+
+	.more_details select {
+		width: 100%;
 	}
 }

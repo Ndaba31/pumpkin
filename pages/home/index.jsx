@@ -58,7 +58,6 @@ const HomePage = () => {
 
 			if (result.ok) {
 				const { user } = await result.json();
-				console.log(user);
 				setUser(user);
 			} else {
 				const { error } = await result.json();
@@ -79,7 +78,7 @@ const HomePage = () => {
 		return <Loading />;
 	}
 
-	console.log(`Popular: ${popularUsers}\nWanted: ${mostWantedUsers}\nSingle: ${singleUsers}\n`);
+	// console.log(`Popular: ${popularUsers}\nWanted: ${mostWantedUsers}\nSingle: ${singleUsers}\n`);
 
 	return (
 		<main className={styles.main}>

@@ -19,6 +19,7 @@ import Loading from '@/components/Loading/Loading';
 import EditLocation from '@/components/EditProfile/EditLocation';
 import EditOccupation from '@/components/EditProfile/EditOccupation';
 import MoreDetails from '@/components/EditProfile/MoreDetails';
+import EditHobbies from '@/components/EditProfile/EditHobbies';
 
 const ProfilePage = () => {
 	const { data: session, loading } = useSession();
@@ -32,6 +33,7 @@ const ProfilePage = () => {
 	const [openEditMoreDetails, setOpenEditMoreDetails] = useState(false);
 	const [openEditLocation, setOpenEditLocation] = useState(false);
 	const [openEditOccupation, setOpenEditOccupation] = useState(false);
+	const [openEditHobbies, setOpenEditHobbies] = useState(false);
 
 	useEffect(() => {
 		const getUser = async () => {
@@ -93,6 +95,14 @@ const ProfilePage = () => {
 
 	const closeOccupationModal = () => {
 		setOpenEditOccupation(false);
+	};
+
+	const openHobbiesModal = () => {
+		setOpenEditHobbies(true);
+	};
+
+	const closeHobbiesModal = () => {
+		setOpenEditHobbies(false);
 	};
 
 	if (loading) {
@@ -200,6 +210,7 @@ const ProfilePage = () => {
 						profile={details}
 						stem={user.stem}
 						onClose={closeMoreDetailsModal}
+						setDetails={setDetails}
 					/>
 				)}
 				{openEditOccupation && (
@@ -207,10 +218,24 @@ const ProfilePage = () => {
 						occupation={occupation}
 						stem={user.stem}
 						onClose={closeOccupationModal}
+						setOccupation={setOccupation}
+					/>
+				)}
+				{openEditHobbies && (
+					<EditHobbies
+						listed_hobbies={hobbies}
+						setHobbies={setHobbies}
+						stem={user.stem}
+						onClose={closeHobbiesModal}
 					/>
 				)}
 				{openEditLocation && (
-					<EditLocation area={area} stem={user.stem} onClose={closeLocationModal} />
+					<EditLocation
+						area={area}
+						stem={user.stem}
+						onClose={closeLocationModal}
+						setLocation={setArea}
+					/>
 				)}
 				<div className={styles.editInfo}>
 					<div className={styles.bio}>
@@ -221,7 +246,7 @@ const ProfilePage = () => {
 						<div>
 							<div className={styles.editBio}>
 								<h3>Hobbies</h3>
-								<button>
+								<button onClick={openHobbiesModal}>
 									<h3>Edit</h3>
 								</button>
 							</div>

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useDateContext } from '@/context/dateContext';
 import { ethinicities, relationship_status, religions, sexes } from '@/data';
 
-const MoreDetails = ({ stem, profile, onClose }) => {
+const MoreDetails = ({ stem, profile, onClose, setDetails }) => {
 	const router = useRouter();
 	const today = new Date().toISOString().split('T')[0];
 	const { setLoading } = useDateContext();
@@ -42,11 +42,6 @@ const MoreDetails = ({ stem, profile, onClose }) => {
 		}));
 	};
 
-	const test = (e) => {
-		e.preventDefault();
-		console.log(formData);
-	};
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log(stem);
@@ -63,8 +58,9 @@ const MoreDetails = ({ stem, profile, onClose }) => {
 			});
 
 			if (res.ok) {
-				setLoading(true);
+				// setLoading(true);
 				// router.reload();
+				setDetails(formData);
 			} else {
 				console.log('Problem with update more details query');
 			}
@@ -84,7 +80,7 @@ const MoreDetails = ({ stem, profile, onClose }) => {
 				</div>
 				<form className={styles.form} onSubmit={handleSubmit}>
 					<div className={modal.formField}>
-						<div className={styles.location}>
+						<div className={styles.more_details}>
 							<input
 								type='date'
 								name='dob'

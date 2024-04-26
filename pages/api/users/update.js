@@ -149,27 +149,25 @@ export default async function handler(req, res) {
 				console.log('Pumpkin More Details Query:');
 				console.log(pumpkin_more_details);
 
-				if (
-					user.dob !== '' &&
-					user.dob !== pumpkin_more_details[0].dob &&
-					user.dob !== null
-				) {
+				if (user.dob !== '' && user.dob !== null) {
+					const dob = new Date(user.dob).toISOString().slice(0, 10);
 					const updateDetail = await query({
 						query: 'UPDATE user_details SET dob = ? WHERE stem = ?;',
-						values: [user.dob, stem],
+						values: [dob, stem],
 					});
 
 					if (!updateDetail) {
 						console.log('Update Not Done');
 						res.status(500).json({ success: false });
 					}
+				} else {
+					await query({
+						query: 'UPDATE user_details SET dob = NULL WHERE stem = ?;',
+						values: [stem],
+					});
 				}
 
-				if (
-					user.relationship_status !== '' &&
-					user.relationship_status !== pumpkin_more_details[0].relationship_status &&
-					user.relationship_status !== null
-				) {
+				if (user.relationship_status !== '' && user.relationship_status !== null) {
 					const updateDetail = await query({
 						query: 'UPDATE user_details SET relationship_status = ? WHERE stem = ?;',
 						values: [user.relationship_status, stem],
@@ -179,13 +177,14 @@ export default async function handler(req, res) {
 						console.log('Update Not Done');
 						res.status(500).json({ success: false });
 					}
+				} else {
+					await query({
+						query: 'UPDATE user_details SET relationship_status = NULL WHERE stem = ?;',
+						values: [stem],
+					});
 				}
 
-				if (
-					user.religion !== '' &&
-					user.religion !== pumpkin_more_details[0].religion &&
-					user.religion !== null
-				) {
+				if (user.religion !== '' && user.religion !== null) {
 					const updateDetail = await query({
 						query: 'UPDATE user_details SET religion = ? WHERE stem = ?;',
 						values: [user.religion, stem],
@@ -195,13 +194,14 @@ export default async function handler(req, res) {
 						console.log('Update Not Done');
 						res.status(500).json({ success: false });
 					}
+				} else {
+					await query({
+						query: 'UPDATE user_details SET religion = NULL WHERE stem = ?;',
+						values: [stem],
+					});
 				}
 
-				if (
-					user.sex !== '' &&
-					user.sex !== pumpkin_more_details[0].sex &&
-					user.sex !== null
-				) {
+				if (user.sex !== '' && user.sex !== null) {
 					const updateDetail = await query({
 						query: 'UPDATE user_details SET sex = ? WHERE stem = ?;',
 						values: [user.sex, stem],
@@ -211,13 +211,14 @@ export default async function handler(req, res) {
 						console.log('Update Not Done');
 						res.status(500).json({ success: false });
 					}
+				} else {
+					await query({
+						query: 'UPDATE user_details SET sex = NULL WHERE stem = ?;',
+						values: [stem],
+					});
 				}
 
-				if (
-					user.ethnicity !== '' &&
-					user.ethnicity !== pumpkin_more_details[0].ethnicity &&
-					user.ethnicity !== null
-				) {
+				if (user.ethnicity !== '' && user.ethnicity !== null) {
 					const updateDetail = await query({
 						query: 'UPDATE user_details SET ethnicity = ? WHERE stem = ?;',
 						values: [user.ethnicity, stem],
@@ -227,6 +228,27 @@ export default async function handler(req, res) {
 						console.log('Update Not Done');
 						res.status(500).json({ success: false });
 					}
+				} else {
+					await query({
+						query: 'UPDATE user_details SET ethnicity = NULL WHERE stem = ?;',
+						values: [stem],
+					});
+				}
+			} else if (fields.update === 'hobbies') {
+				const stem = fields.stem;
+				const hobby = fields.hobby;
+				console.log(`Hobbies reached\nStem: ${stem}\nHobby: ${hobby}`);
+
+				if (fields.action === 'add') {
+					await query({
+						query: 'INSERT INTO hobbies (stem, hobby) VALUES (?, ?)',
+						values: [stem, hobby],
+					});
+				} else {
+					await query({
+						query: 'DELETE FROM hobbies WHERE stem = ? and hobby = ?',
+						values: [stem, hobby],
+					});
 				}
 			}
 		});
