@@ -46,7 +46,7 @@ const SignupModal = ({ isOpen, onClose, openLogin }) => {
 		const { firstName, lastName, email, stem, password } = formData;
 		const stem_edited = stem.trim().split(' ').join('_').toLowerCase();
 
-		const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/users/newUser`, {
+		const result = await fetch(`/api/users/newUser`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
