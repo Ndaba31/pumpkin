@@ -68,8 +68,6 @@ const SignupModal = ({ isOpen, onClose, openLogin }) => {
 			const { error } = await result.json();
 			setError(error);
 		}
-
-		console.log(formData);
 	};
 
 	return (
