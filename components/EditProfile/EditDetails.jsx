@@ -74,8 +74,8 @@ const EditDetails = ({ onClose, user }) => {
 
 			if (res.ok) {
 				// setLoading(true);
-				// onClose();
-				// router.reload();
+				onClose();
+				router.reload();
 				console.log('Transferred profile data');
 			} else {
 				console.log('Problem with update details query');
