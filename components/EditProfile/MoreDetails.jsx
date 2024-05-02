@@ -16,7 +16,7 @@ const MoreDetails = ({ stem, profile, onClose, setDetails }) => {
 				: '',
 		dob:
 			profile !== undefined && profile.dob !== undefined && profile.dob !== null
-				? profile.dob
+				? new Date(profile.dob).toISOString().slice(0, 10)
 				: '',
 		religion:
 			profile !== undefined && profile.religion !== undefined && profile.religion !== null
@@ -58,8 +58,7 @@ const MoreDetails = ({ stem, profile, onClose, setDetails }) => {
 			});
 
 			if (res.ok) {
-				// setLoading(true);
-				// router.reload();
+				onClose();
 				setDetails(formData);
 			} else {
 				console.log('Problem with update more details query');
@@ -165,7 +164,7 @@ const MoreDetails = ({ stem, profile, onClose, setDetails }) => {
 								value={formData.ethnicity}
 								onChange={handleChange}
 							>
-								<option value=''>Select Region</option>
+								<option value=''>Select Ethnicity</option>
 								{ethinicities.map((ethnicity, i) => (
 									<option
 										value={ethnicity}

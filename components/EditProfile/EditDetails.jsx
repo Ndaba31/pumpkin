@@ -73,8 +73,10 @@ const EditDetails = ({ onClose, user }) => {
 			});
 
 			if (res.ok) {
-				setLoading(true);
-				router.reload();
+				// setLoading(true);
+				// onClose();
+				// router.reload();
+				console.log('Transferred profile data');
 			} else {
 				console.log('Problem with update details query');
 			}
@@ -107,7 +109,7 @@ const EditDetails = ({ onClose, user }) => {
 								<Image
 									layout='fill'
 									objectFit='contain'
-									src={'/' + photo}
+									src={photo}
 									alt={user.profile_photo}
 									priority
 								/>

@@ -137,11 +137,7 @@ const ProfilePage = () => {
 						<div className={styles.profile_picture}>
 							<div className={styles.profile_image}>
 								<Image
-									src={
-										!user.profile_photo
-											? '/no_photo.png'
-											: '/' + user.profile_photo
-									}
+									src={!user.profile_photo ? '/no_photo.png' : user.profile_photo}
 									alt={
 										!user.profile_photo
 											? 'No profile photo'

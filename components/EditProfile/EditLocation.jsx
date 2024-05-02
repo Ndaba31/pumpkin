@@ -40,8 +40,7 @@ const EditLocation = ({ area, onClose, stem, setLocation }) => {
 			});
 
 			if (res.ok) {
-				// setLoading(true);
-				// router.reload();
+				onClose();
 				setLocation(formData);
 			} else {
 				console.log('Problem with update locations query');

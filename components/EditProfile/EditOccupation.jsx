@@ -44,7 +44,7 @@ const EditOccupation = ({ occupation, onClose, stem, setOccupation }) => {
 			});
 
 			if (res.ok) {
-				// setLoading(true);
+				onClose();
 				setOccupation(formData);
 			} else {
 				console.log('Problem with update occupations query');

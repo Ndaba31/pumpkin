@@ -1,4 +1,6 @@
 import IncomingForm from 'formidable-serverless';
+import { Storage } from '@google-cloud/storage';
+import fs from 'fs';
 import { cors, runMiddleware } from '@/lib/cors';
 import { query } from '@/lib/db';
 
@@ -20,8 +22,98 @@ export default async function handler(req, res) {
 				const stem = fields.stem;
 				const user = JSON.parse(userObject);
 				const stem_edited = user.stem.trim().split(' ').join('_').toLowerCase();
+				const upload = files.file;
 
-				console.log(`Previous stem: ${stem_edited}`);
+				const storage = new Storage();
+				const bucketName = process.env.BUCKET_NAME;
+				const folderName = process.env.DISPLAY_PHOTOS;
+				let exists = false;
+
+				console.log(`Previous stem: ${stem_edited}\nProfile Photo:`);
+				console.log(fields.temp_photo);
+
+				if (upload) {
+					const filePath = upload.path;
+					const fileName = upload.name;
+
+					try {
+						const destinationPath = `${folderName}/${stem}-${fileName}`;
+
+						// Check if the file exists before attempting to delete it
+						const [objects] = await storage.bucket(bucketName).getFiles();
+
+						// Iterate through the list of objects
+						objects.forEach(async (object) => {
+							console.log(`Name: ${object.name}`);
+							console.log(object);
+
+							// Split the filename by underscores to extract the parts
+							const parts = object.name.split('-');
+							const firstPart = parts[0].split('/');
+
+							// Extract the last part of the filename (username and image type)
+							const photo_stem = firstPart[1];
+							console.log(`Photo Stem: ${photo_stem}`);
+
+							if (photo_stem === stem) {
+								exists = true;
+							}
+
+							if (exists) {
+								// Delete the existing image from GCS
+								await storage.bucket(bucketName).file(object.name).delete();
+							}
+						});
+
+						const gcsPath = `https://storage.googleapis.com/${bucketName}/${destinationPath}`;
+
+						await storage.bucket(bucketName).upload(filePath, {
+							destination: destinationPath,
+						});
+
+						await query({
+							query: 'UPDATE user_details SET profile_photo = ? WHERE stem = ?',
+							values: [gcsPath, stem],
+						});
+					} catch (error) {
+						console.log(error);
+					}
+
+					res.status(200).json({ success: true, oldPath: filePath, name: fileName });
+				} else if (!fields.temp_photo) {
+					// Check if the file exists before attempting to delete it
+					const [objects] = await storage.bucket(bucketName).getFiles();
+
+					// Iterate through the list of objects
+					objects.forEach(async (object) => {
+						console.log(`Name: ${object.name}`);
+						console.log(object);
+
+						// Split the filename by underscores to extract the parts
+						const parts = object.name.split('-');
+						const firstPart = parts[0].split('/');
+
+						// Extract the last part of the filename (username and image type)
+						const photo_stem = firstPart[1];
+						console.log(`Photo Stem: ${photo_stem}`);
+
+						if (photo_stem === stem) {
+							exists = true;
+						}
+
+						if (exists) {
+							// Delete the existing image from GCS
+							await storage.bucket(bucketName).file(object.name).delete();
+						}
+					});
+
+					await query({
+						query: 'UPDATE user_details SET profile_photo = NULL WHERE stem = ?',
+						values: [stem],
+					});
+
+					res.status(200).json({ Message: 'Set profile photo to null' });
+				}
 
 				try {
 					const updateUsers = query({
@@ -253,8 +345,8 @@ export default async function handler(req, res) {
 			}
 		});
 
-		res.status(200).json({ success: true });
+		// res.status(200).json({ success: true });
 	} else {
-		res.status(500).json({ success: false });
+		res.status(400).json({ success: false });
 	}
 }
