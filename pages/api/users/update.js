@@ -24,7 +24,8 @@ export default async function handler(req, res) {
 				const stem_edited = user.stem.trim().split(' ').join('_').toLowerCase();
 				const upload = files.file;
 
-				const storage = new Storage();
+				const credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+				const storage = new Storage({ credentials });
 				const bucketName = process.env.BUCKET_NAME;
 				const folderName = process.env.DISPLAY_PHOTOS;
 				let exists = false;
