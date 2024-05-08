@@ -7,6 +7,7 @@ import { useDateContext } from '@/context/dateContext';
 
 const EditDetails = ({ onClose, user }) => {
 	const router = useRouter();
+	console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 	const { setLoading } = useDateContext();
 	const [photo, setPhoto] = useState(user.profile_photo);
 	const [imagePreview, setImagePreview] = useState(null);
