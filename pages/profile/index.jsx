@@ -20,6 +20,7 @@ import EditLocation from '@/components/EditProfile/EditLocation';
 import EditOccupation from '@/components/EditProfile/EditOccupation';
 import MoreDetails from '@/components/EditProfile/MoreDetails';
 import EditHobbies from '@/components/EditProfile/EditHobbies';
+import UploadPhoto from '@/components/EditProfile/UploadPhoto';
 
 const ProfilePage = () => {
 	const { data: session, loading } = useSession();
@@ -34,6 +35,7 @@ const ProfilePage = () => {
 	const [openEditLocation, setOpenEditLocation] = useState(false);
 	const [openEditOccupation, setOpenEditOccupation] = useState(false);
 	const [openEditHobbies, setOpenEditHobbies] = useState(false);
+	const [openPost, setOpenPost] = useState(false);
 
 	useEffect(() => {
 		const getUser = async () => {
@@ -103,6 +105,14 @@ const ProfilePage = () => {
 
 	const closeHobbiesModal = () => {
 		setOpenEditHobbies(false);
+	};
+
+	const openPostModal = () => {
+		setOpenPost(true);
+	};
+
+	const closePostModal = () => {
+		setOpenPost(false);
 	};
 
 	if (loading) {
@@ -185,8 +195,9 @@ const ProfilePage = () => {
 							<EditNoteSharp />
 						</Link>
 						<Link
-							href='profile/post-image'
+							href=''
 							className={css.loginButton}
+							onClick={openPostModal}
 							style={{
 								display: 'flex',
 								alignItems: 'center',
@@ -201,6 +212,7 @@ const ProfilePage = () => {
 					</div>
 				</div>
 				{openEditDetails && <EditDetails user={user} onClose={closeDetailsModal} />}
+				{openPost && <UploadPhoto user={user} onClose={closePostModal} />}
 				{openEditMoreDetails && (
 					<MoreDetails
 						profile={details}

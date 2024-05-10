@@ -12,7 +12,7 @@ const PostDetail = ({ post }) => {
 				objectFit='contain'
 				width={400}
 				height={450}
-				src={'/' + post}
+				src={post}
 				alt={post}
 				className={styles.post_image}
 			/>

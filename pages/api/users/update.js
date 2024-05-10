@@ -1,6 +1,5 @@
 import IncomingForm from 'formidable-serverless';
 import { Storage } from '@google-cloud/storage';
-import fs from 'fs';
 import { cors, runMiddleware } from '@/lib/cors';
 import { query } from '@/lib/db';
 

@@ -20,11 +20,19 @@
 	border-radius: 10px;
 }
 
-.photoButtons {
+.photoButtons,
+.uploadButton {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	margin: 10px 0;
+}
+
+.uploadButton {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .edit_upload_button {
