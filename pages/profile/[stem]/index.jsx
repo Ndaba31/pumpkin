@@ -366,11 +366,7 @@ const Stem = () => {
 					<div className={styles.profile_picture}>
 						<div className={styles.profile_image}>
 							<Image
-								src={
-									!crush.profile_photo
-										? '/no_photo.png'
-										: '/' + crush.profile_photo
-								}
+								src={!crush.profile_photo ? '/no_photo.png' : crush.profile_photo}
 								alt={
 									!crush.profile_photo ? 'No profile photo' : crush.profile_photo
 								}
