@@ -134,6 +134,28 @@ const SignupModal = ({ isOpen, onClose, openLogin }) => {
 							onChange={handleChange}
 							required
 						/>
+						<label for='dob' style={{fontSize:"14px"}}>
+                          Date of Birth
+						</label>
+						<input
+						   id='dob'
+						   type='date'
+						   //name='dateOfBirth'
+						   className={styles.input}
+						   //placeholder='Date of Birth'
+						  // value='DateofBirth'
+						   //onChange={}
+						   required
+						/>
+						<label for='gender' style={{fontSize:"14px"}}>
+                          Preferred Gender
+						</label>
+						<br/>
+						<select id='gender' style={{borderRadius:"5px"}}>
+							<option value='male'>Male</option>
+							<option value='female'>Female</option>
+							<option value='notSpecified'>Not Specified</option>
+						</select>
 					</div>
 					<p className={styles.signupText}>
 						Already have an account? <span onClick={openLogin}>Login</span>

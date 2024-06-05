@@ -17,10 +17,11 @@ const DiscoverCard = ({ user }) => {
 	return (
 		<Link href={`/profile/${stem}`} className={styles.people_card}>
 			<Image
-				src={!profile_photo ? '/no_photo.png' : profile_photo}
+				src={!profile_photo ? '/no_photo.png' : profile_photo }
 				alt={!profile_photo ? 'No profile photo' : profile_photo}
 				layout='fill'
 				className={styles.user_profile}
+				
 			/>
 			<div className={styles.people_details}>
 				<h3>

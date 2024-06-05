@@ -26,10 +26,10 @@ import Loading from '@/components/Loading/Loading';
 import Authenticate from '@/components/Authenticate/Authenticate';
 import { useDateContext } from '@/context/dateContext';
 import { useSession } from 'next-auth/react';
-import Location from '@/components/Pills/Location';
+import Stem_location from '@/components/Pills/Stem_location';
 import ProfileSegment from '@/components/Pills/ProfileSegment';
-import Occupations from '@/components/Pills/Occupations';
 import Pills from '@/components/Pills/Pills';
+import Stem_Occupations from '@/components/Pills/Stem_Occupations';
 
 const Stem = () => {
 	const router = useRouter();
@@ -537,7 +537,7 @@ const Stem = () => {
 							{occupation === undefined || occupation.length === 0 ? (
 								<h3>No Occupations Listed Yet</h3>
 							) : (
-								<Occupations occupation={occupation} />
+								<Stem_Occupations occupation={occupation} />
 							)}
 						</div>
 						<div className={styles.editBio}>
@@ -569,7 +569,7 @@ const Stem = () => {
 							{area === undefined || area.length === 0 ? (
 								<h3>No Location Details</h3>
 							) : (
-								<Location area={area} />
+								<Stem_location area={area} />
 							)}
 						</div>
 					</div>

@@ -28,11 +28,21 @@
 
 .profile_button {
   background: white;
+  width: 20%;
+  height: 40%;
+  box-sizing: content-box;
 }
 .profile_button_right {
   background: white;
   width: 20%;
-  height: 20%;
+  height: 40%;
+  position: relative;
+  box-sizing: content-box;
+}
+
+.button_img {
+  transform: scale(0.6);
+  stroke-width: 100;
 }
 
 .matches {
@@ -193,7 +203,7 @@
     color: rgba(247, 247, 247, 0.5);
     margin-bottom: -470px;
     padding: -100%;
-    margin-left: 52vw;
+    margin-left: 60vw;
   }
 
   .all {

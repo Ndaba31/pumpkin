@@ -125,7 +125,7 @@ const DiscoverPage = () => {
 						</div>
 					)}
 					{openFilter && (
-						<div className={styles.searchList}>
+						<div className={styles.filterList}>
 							<div className={styles.filterHeader}>
 								<h3>Search by Category</h3>
 								<div className={styles.filterButtons}>

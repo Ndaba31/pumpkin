@@ -13,7 +13,7 @@ const Loading = () => {
 				height: '100vh',
 			}}
 		>
-			<Image src='/logo.svg' alt='Pumpkin Logo' priority height={300} width={300} />
+			<Image src='/logo.svg' alt='Pumpkin Logo' priority height={100} width={100} />
 			<h1 style={{ textAlign: 'center', color: 'white' }}>Loading...</h1>
 		</div>
 	);
